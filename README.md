@@ -1,155 +1,121 @@
 Binance Futures Trading Bot (Testnet)
 
-A Python command-line application to place MARKET and LIMIT orders on Binance Futures Testnet (USDT-M) with clean architecture, logging, and error handling.
+A Python command-line application to place MARKET and LIMIT orders on Binance Futures Testnet (USDT-M).
+The project focuses on clean API integration, CLI-based interaction, structured logging, and robust error handling.
 
-This project demonstrates safe integration with an external trading API, structured code design, and production-style practices such as environment-based configuration and logging.
+--------------------------------------------------
 
-🚀 Features
+Features
 
-Place MARKET and LIMIT orders on Binance Futures Testnet
+- Command Line Interface (CLI) using argparse
+- Place MARKET and LIMIT orders
+- Supports BUY and SELL
+- Clean separation between API client, order handling, and CLI
+- Structured logging to file and console
+- Secure API key management using environment variables
+- Robust error handling
 
-Supports BUY and SELL orders
+--------------------------------------------------
 
-Command-line interface (CLI) using argparse
+Setup Instructions
 
-Clean separation of concerns:
+1. Clone the repository
 
-API client layer
-
-Order logic
-
-CLI layer
-
-Structured logging to file and console
-
-Robust error handling
-
-Secure API key management using environment variables
-
-🧱 Project Structure
-binance-futures-trading-bot/
-│
-├── bot/
-│   ├── __init__.py
-│   ├── client.py          # Binance Futures Testnet client
-│   ├── orders.py          # Order placement logic
-│   ├── logging_config.py  # Logging configuration
-│
-├── cli.py                 # CLI entry point
-├── requirements.txt
-├── README.md
-├── .gitignore
-└── logs/
-    └── trading_bot.log
-
-⚙️ Setup Instructions
-1️⃣ Clone the repository
-git clone <your-repo-url>
+git clone <repository-url>
 cd binance-futures-trading-bot
 
-2️⃣ Create and activate virtual environment
+2. Create and activate virtual environment
+
 python -m venv venv
 
-
-Windows
-
+Windows:
 venv\Scripts\activate
 
-
-Mac/Linux
-
+Mac / Linux:
 source venv/bin/activate
 
-3️⃣ Install dependencies
+3. Install dependencies
+
 pip install -r requirements.txt
 
-4️⃣ Create .env file (IMPORTANT)
+--------------------------------------------------
 
-Create a .env file in the project root:
+Environment Configuration
+
+Create a .env file in the project root and add:
 
 BINANCE_API_KEY=your_testnet_api_key
 BINANCE_API_SECRET=your_testnet_api_secret
 
+Note: The .env file is excluded from version control via .gitignore.
 
-⚠️ Do not commit .env to GitHub (already ignored via .gitignore).
+--------------------------------------------------
 
-5️⃣ Binance Futures Testnet Setup
+Binance Futures Testnet Setup
 
-Register at: https://testnet.binancefuture.com
+- Register at https://testnet.binancefuture.com
+- Generate API Key and Secret
+- Enable Futures permission
+- Add test USDT funds from the dashboard
 
-Generate API Key & Secret
+--------------------------------------------------
 
-Enable Futures permission
+Usage
 
-Add test USDT funds from the testnet dashboard
+Place a MARKET Order:
 
-▶️ How to Run
-MARKET Order Example
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
 
-LIMIT Order Example
+Place a LIMIT Order:
+
 python cli.py --symbol BTCUSDT --side BUY --type LIMIT --quantity 0.001 --price 50000
 
-📄 Output Example
+--------------------------------------------------
+
+Sample Output
+
 ORDER PLACED SUCCESSFULLY
 Order ID: N/A
 Status: N/A
 Executed Qty: N/A
 Avg Price: N/A
 
+Note: Binance Futures Testnet may return empty ACK responses ({}) even when orders are successfully placed.
+All API requests and responses are logged for verification.
 
-Note: Binance Futures Testnet may return empty ACK responses ({}) for order placement.
-Orders are still successfully accepted and logged.
+--------------------------------------------------
 
-📝 Logging
+Logging
 
-Logs are written to:
+Application logs are written to:
 
 logs/trading_bot.log
 
+Logs include:
+- Order request details
+- API responses
+- Error messages and exceptions
 
-Includes:
+--------------------------------------------------
 
-Order request details
+Notes on Testnet Behavior
 
-API responses
+- Binance Futures Testnet may return empty responses for order placement
+- Orders are still accepted successfully
+- This behavior is handled gracefully and documented via logs
+- On mainnet, full execution details are typically returned
 
-Errors and exceptions
+--------------------------------------------------
 
-Sample log entry:
+Assumptions
 
-INFO | Placing MARKET order | Symbol=BTCUSDT, Side=BUY, Quantity=0.001
-INFO | Order response: {}
+- This project uses Binance Futures Testnet (USDT-M) only
+- No real funds are involved
+- CLI-based interface is preferred for simplicity and backend focus
 
-⚠️ Testnet Behavior Note
+--------------------------------------------------
 
-Binance Futures Testnet sometimes returns empty responses ({}) for both MARKET and LIMIT orders, even when the order is successfully placed.
+Submission
 
-This behavior is handled safely in the application and is documented in logs.
-In production (mainnet), full order details are typically returned.
-
-✅ Requirements Coverage
-
- Python 3.x
-
- MARKET orders
-
- LIMIT orders
-
- BUY / SELL support
-
- CLI input validation
-
- Logging to file
-
- Error handling
-
- Clean, reusable code structure
-
-📌 Assumptions
-
-This project uses Binance Futures Testnet (USDT-M) only
-
-No real funds are involved
-
-CLI is preferred over UI for simplicity and focus on backend logic
+This project was developed as part of a Python Developer – Trading Bot assignment,
+demonstrating safe API usage, clean architecture, and production-style coding practices.
