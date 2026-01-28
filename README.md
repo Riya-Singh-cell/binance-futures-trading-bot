@@ -4,7 +4,7 @@ A Python command-line application to place MARKET and LIMIT orders on Binance Fu
 
 This project demonstrates safe integration with an external trading API, structured code design, and production-style practices such as environment-based configuration and logging.
 
- Features
+🚀 Features
 
 Place MARKET and LIMIT orders on Binance Futures Testnet
 
@@ -26,7 +26,7 @@ Robust error handling
 
 Secure API key management using environment variables
 
- Project Structure
+🧱 Project Structure
 binance-futures-trading-bot/
 │
 ├── bot/
@@ -43,67 +43,67 @@ binance-futures-trading-bot/
     └── trading_bot.log
 
 ⚙️ Setup Instructions
-1️ Clone the repository
+1️⃣ Clone the repository
 git clone <your-repo-url>
 cd binance-futures-trading-bot
 
-2️ Create and activate virtual environment
+2️⃣ Create and activate virtual environment
 python -m venv venv
 
-
-Windows
-
+Windows:
 venv\Scripts\activate
 
-
-Mac/Linux
-
+Mac / Linux:
 source venv/bin/activate
 
-3️ Install dependencies
+3️⃣ Install dependencies
 pip install -r requirements.txt
 
-4️ Create .env file (IMPORTANT)
+4️⃣ Create .env file (IMPORTANT)
 
-Create a .env file in the project root:
+Create a .env file in the project root and add:
 
 BINANCE_API_KEY=your_testnet_api_key
 BINANCE_API_SECRET=your_testnet_api_secret
 
+Note: The .env file is excluded from version control via .gitignore.
 
-⚠️ Do not commit .env to GitHub (already ignored via .gitignore).
+--------------------------------------------------
 
-5️ Binance Futures Testnet Setup
+5️⃣ Binance Futures Testnet Setup
 
-Register at: https://testnet.binancefuture.com
+- Register at https://testnet.binancefuture.com
+- Generate API Key and Secret
+- Enable Futures permission
+- Add test USDT funds from the dashboard
 
-Generate API Key & Secret
+--------------------------------------------------
 
-Enable Futures permission
+Usage
 
-Add test USDT funds from the testnet dashboard
+Place a MARKET Order:
 
-▶️ How to Run
-MARKET Order Example
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
 
-LIMIT Order Example
+Place a LIMIT Order:
+
 python cli.py --symbol BTCUSDT --side BUY --type LIMIT --quantity 0.001 --price 50000
 
- Output Example
+📄 Output Example
 ORDER PLACED SUCCESSFULLY
 Order ID: N/A
 Status: N/A
 Executed Qty: N/A
 Avg Price: N/A
 
+Note: Binance Futures Testnet may return empty ACK responses ({}) even when orders are successfully placed.
+All API requests and responses are logged for verification.
 
-Note: Binance Futures Testnet may return empty ACK responses ({}) for order placement.
-Orders are still successfully accepted and logged.
+--------------------------------------------------
 
-📝 Logging
+Logging
 
-Logs are written to:
+Application logs are written to:
 
 logs/trading_bot.log
 
@@ -128,7 +128,7 @@ Binance Futures Testnet sometimes returns empty responses ({}) for both MARKET a
 This behavior is handled safely in the application and is documented in logs.
 In production (mainnet), full order details are typically returned.
 
- Requirements Coverage
+✅ Requirements Coverage
 
  Python 3.x
 
@@ -146,7 +146,7 @@ In production (mainnet), full order details are typically returned.
 
  Clean, reusable code structure
 
- Assumptions
+📌 Assumptions
 
 This project uses Binance Futures Testnet (USDT-M) only
 
